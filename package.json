@@ -1,0 +1,28 @@
+{
+  "name": "custom-eslint-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adithemighty/custom-eslint-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adithemighty/custom-eslint-plugin/issues"
+  },
+  "homepage": "https://github.com/adithemighty/custom-eslint-plugin#readme",
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-plugin-custom": "file:eslint",
+    "jest": "^29.3.1"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^5.48.0",
+    "jest-environment-jsdom": "^29.3.1"
+  }
+}
