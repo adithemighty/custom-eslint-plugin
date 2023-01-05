@@ -7,12 +7,14 @@ const ruleTester = new RuleTester({});
 const errors = [{ message: "Consider using the Z_INDEX constant." }];
 
 const VALID_VALUES = [
-  "auto",
-  "inherit",
-  "initial",
-  "revert",
-  "revert-layer",
-  "unset",
+  '"auto"',
+  '"inherit"',
+  '"initial"',
+  '"revert"',
+  '"revert-layer"',
+  '"unset"',
+  "undefined",
+  "Z_INDEX.BODY",
 ];
 
 ruleTester.run(
@@ -20,24 +22,18 @@ ruleTester.run(
   rule.rules["prefer-z-index-constant"].create,
   {
     valid: [
-      ...VALID_VALUES.map((value) => `var style = { zIndex: "${value}"} `),
-      `var style = { zIndex: Z_INDEX.NOTIFICATION} `,
-      `var style = { zIndex: undefined} `,
+      ...VALID_VALUES.map((value) => `var style = { zIndex: ${value} }`),
       `var style = { zIndex: props.isActive ? Z_INDEX.BODY : Z_INDEX.NOTIFICATION };`,
       `var style = { zIndex: props.isActive ? undefined : Z_INDEX.NOTIFICATION};`,
     ],
     invalid: [
       { code: "var style = { zIndex: 9999 }", errors },
-      {
-        code: `var style = { zIndex: props.isActive ? undefined : 9999 };`,
-        errors,
-      },
       ...VALID_VALUES.map((value) => ({
-        code: `var style = { zIndex: props.isActive ? "${value}" : 9999 };`,
+        code: `var style = { zIndex: props.isActive ? ${value} : 9999 };`,
         errors,
       })),
       ...VALID_VALUES.map((value) => ({
-        code: `var style = { zIndex: props.isActive ? 9999 : "${value}" };`,
+        code: `var style = { zIndex: props.isActive ? 9999 : ${value} };`,
         errors,
       })),
     ],
