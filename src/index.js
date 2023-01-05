@@ -3,10 +3,28 @@ const Z_INDEX = {
   NOTIFICATION: 1,
 };
 
-export const goodStyle = {
+// Valid
+export const styleConstant = {
   zIndex: Z_INDEX.NOTIFICATION,
 };
 
-export const badStyle = {
+export const styleValidString = {
+  zIndex: "unset",
+};
+
+export const validConditionalStyle = ({ isActive }) => ({
+  zIndex: isActive ? Z_INDEX.BODY : Z_INDEX.NOTIFICATION,
+});
+
+export const invalidConditionalStyle = ({ isActive }) => ({
+  zIndex: isActive ? undefined : Z_INDEX.NOTIFICATION,
+});
+
+// Invalid
+export const styleNegativeNumber = {
+  zIndex: -1,
+};
+
+export const styleNumber = {
   zIndex: 99999,
 };
