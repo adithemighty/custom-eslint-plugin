@@ -2,7 +2,9 @@ const { RuleTester } = require("eslint");
 
 const rule = require("./");
 
-const ruleTester = new RuleTester({});
+const ruleTester = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
+});
 
 const errors = [{ message: "Consider using the Z_INDEX constant." }];
 
@@ -25,6 +27,7 @@ ruleTester.run(
       ...VALID_VALUES.map((value) => `var style = { zIndex: ${value} }`),
       `var style = { zIndex: props.isActive ? Z_INDEX.BODY : Z_INDEX.NOTIFICATION };`,
       `var style = { zIndex: props.isActive ? undefined : Z_INDEX.NOTIFICATION};`,
+      `interface Props { zIndex: number }`,
     ],
     invalid: [
       { code: "var style = { zIndex: 9999 }", errors },

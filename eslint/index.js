@@ -37,6 +37,8 @@ module.exports = {
       create: function (context) {
         return {
           Identifier(node) {
+            if (node.parent.type.startsWith("TS")) return;
+
             // We're only interested if the key is `zIndex`
             if (node.name === "zIndex") {
               const expression = node.parent.value;
